@@ -16,10 +16,6 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="createdDateTime"><span jhiTranslate="vehicleManagerApp.jobWorker.createdDateTime">Created Date Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="modifiedDateTime"><span jhiTranslate="vehicleManagerApp.jobWorker.modifiedDateTime">Modified Date Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="deleted"><span jhiTranslate="vehicleManagerApp.jobWorker.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="workName"><span jhiTranslate="vehicleManagerApp.jobWorker.work">Work</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="driverId"><span jhiTranslate="vehicleManagerApp.jobWorker.driver">Driver</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -27,10 +23,6 @@
             </thead>
             <tbody>
             <tr *ngFor="let jobWorker of jobWorkers ;trackBy: trackId">
-                <td><a [routerLink]="['../job-worker-drn', jobWorker.id ]">{{jobWorker.id}}</a></td>
-                <td>{{jobWorker.createdDateTime | date:'medium'}}</td>
-                <td>{{jobWorker.modifiedDateTime | date:'medium'}}</td>
-                <td>{{jobWorker.deleted}}</td>
                 <td>
                     <div *ngIf="jobWorker.workId">
                         <a [routerLink]="['../job-drn', jobWorker.workId  ]" >{{jobWorker.workName}}</a>

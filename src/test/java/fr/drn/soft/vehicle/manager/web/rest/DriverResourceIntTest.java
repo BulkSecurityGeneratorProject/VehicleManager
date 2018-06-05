@@ -61,9 +61,6 @@ public class DriverResourceIntTest {
     private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
 
-    private static final ZonedDateTime DEFAULT_HIRE_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_HIRE_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
     private static final ZonedDateTime DEFAULT_CREATED_DATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATED_DATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -122,7 +119,6 @@ public class DriverResourceIntTest {
             .email(DEFAULT_EMAIL)
             .businessIdentification(DEFAULT_BUSINESS_IDENTIFICATION)
             .phoneNumber(DEFAULT_PHONE_NUMBER)
-            .hireDate(DEFAULT_HIRE_DATE)
             .createdDateTime(DEFAULT_CREATED_DATE_TIME)
             .modifiedDateTime(DEFAULT_MODIFIED_DATE_TIME)
             .deleted(DEFAULT_DELETED);
@@ -155,7 +151,6 @@ public class DriverResourceIntTest {
         assertThat(testDriver.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testDriver.getBusinessIdentification()).isEqualTo(DEFAULT_BUSINESS_IDENTIFICATION);
         assertThat(testDriver.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
-        assertThat(testDriver.getHireDate()).isEqualTo(DEFAULT_HIRE_DATE);
         assertThat(testDriver.getCreatedDateTime()).isEqualTo(DEFAULT_CREATED_DATE_TIME);
         assertThat(testDriver.getModifiedDateTime()).isEqualTo(DEFAULT_MODIFIED_DATE_TIME);
         assertThat(testDriver.isDeleted()).isEqualTo(DEFAULT_DELETED);
@@ -273,7 +268,6 @@ public class DriverResourceIntTest {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].businessIdentification").value(hasItem(DEFAULT_BUSINESS_IDENTIFICATION.toString())))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.toString())))
-            .andExpect(jsonPath("$.[*].hireDate").value(hasItem(sameInstant(DEFAULT_HIRE_DATE))))
             .andExpect(jsonPath("$.[*].createdDateTime").value(hasItem(sameInstant(DEFAULT_CREATED_DATE_TIME))))
             .andExpect(jsonPath("$.[*].modifiedDateTime").value(hasItem(sameInstant(DEFAULT_MODIFIED_DATE_TIME))))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
@@ -295,7 +289,6 @@ public class DriverResourceIntTest {
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.businessIdentification").value(DEFAULT_BUSINESS_IDENTIFICATION.toString()))
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER.toString()))
-            .andExpect(jsonPath("$.hireDate").value(sameInstant(DEFAULT_HIRE_DATE)))
             .andExpect(jsonPath("$.createdDateTime").value(sameInstant(DEFAULT_CREATED_DATE_TIME)))
             .andExpect(jsonPath("$.modifiedDateTime").value(sameInstant(DEFAULT_MODIFIED_DATE_TIME)))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
@@ -326,7 +319,6 @@ public class DriverResourceIntTest {
             .email(UPDATED_EMAIL)
             .businessIdentification(UPDATED_BUSINESS_IDENTIFICATION)
             .phoneNumber(UPDATED_PHONE_NUMBER)
-            .hireDate(UPDATED_HIRE_DATE)
             .createdDateTime(UPDATED_CREATED_DATE_TIME)
             .modifiedDateTime(UPDATED_MODIFIED_DATE_TIME)
             .deleted(UPDATED_DELETED);
@@ -346,7 +338,6 @@ public class DriverResourceIntTest {
         assertThat(testDriver.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testDriver.getBusinessIdentification()).isEqualTo(UPDATED_BUSINESS_IDENTIFICATION);
         assertThat(testDriver.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
-        assertThat(testDriver.getHireDate()).isEqualTo(UPDATED_HIRE_DATE);
         assertThat(testDriver.getCreatedDateTime()).isEqualTo(UPDATED_CREATED_DATE_TIME);
         assertThat(testDriver.getModifiedDateTime()).isEqualTo(UPDATED_MODIFIED_DATE_TIME);
         assertThat(testDriver.isDeleted()).isEqualTo(UPDATED_DELETED);

@@ -8,7 +8,6 @@ export class DriverDrn implements BaseEntity {
         public email?: string,
         public businessIdentification?: string,
         public phoneNumber?: string,
-        public hireDate?: any,
         public createdDateTime?: any,
         public modifiedDateTime?: any,
         public deleted?: boolean,

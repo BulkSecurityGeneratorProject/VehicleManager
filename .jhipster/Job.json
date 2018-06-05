@@ -23,6 +23,21 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "drivers",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "startDateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "endDateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
             "fieldName": "createdDateTime",
             "fieldType": "ZonedDateTime"
         },

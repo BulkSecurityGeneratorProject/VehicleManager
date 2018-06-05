@@ -33,8 +33,6 @@ public class DriverDTO implements Serializable {
 
     private String phoneNumber;
 
-    private ZonedDateTime hireDate;
-
     private ZonedDateTime createdDateTime;
 
     private ZonedDateTime modifiedDateTime;
@@ -87,14 +85,6 @@ public class DriverDTO implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public ZonedDateTime getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(ZonedDateTime hireDate) {
-        this.hireDate = hireDate;
     }
 
     public ZonedDateTime getCreatedDateTime() {
@@ -151,7 +141,6 @@ public class DriverDTO implements Serializable {
             ", email='" + getEmail() + "'" +
             ", businessIdentification='" + getBusinessIdentification() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
-            ", hireDate='" + getHireDate() + "'" +
             ", createdDateTime='" + getCreatedDateTime() + "'" +
             ", modifiedDateTime='" + getModifiedDateTime() + "'" +
             ", deleted='" + isDeleted() + "'" +

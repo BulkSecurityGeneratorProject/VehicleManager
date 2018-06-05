@@ -42,15 +42,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="hire_date" type="timestamp">
+            <column name="created_date_time" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="true" />
             </column>
 
-            <column name="created_date_time" type="timestamp">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="modified_date_time" type="timestamp">
+            <column name="modified_date_time" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="true" />
             </column>
 
@@ -60,10 +56,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="driver" columnName="hire_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="driver" columnName="created_date_time" columnDataType="datetime"/>
-        <dropDefaultValue tableName="driver" columnName="modified_date_time" columnDataType="datetime"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

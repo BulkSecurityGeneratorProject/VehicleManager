@@ -33,30 +33,40 @@
                 [(ngModel)]="job.description" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="vehicleManagerApp.job.createdDateTime" for="field_createdDateTime">Created Date Time</label>
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.job.drivers" for="field_drivers">Drivers</label>
+            <input type="number" class="form-control" name="drivers" id="field_drivers"
+                [(ngModel)]="job.drivers" required/>
+            <div [hidden]="!(editForm.controls.drivers?.dirty && editForm.controls.drivers?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.drivers?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.drivers?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.job.startDateTime" for="field_startDateTime">Start Date Time</label>
             <div class="d-flex">
-                <input id="field_createdDateTime" type="datetime-local" class="form-control" name="createdDateTime" [(ngModel)]="job.createdDateTime"
+                <input id="field_startDateTime" type="datetime-local" class="form-control" name="startDateTime" [(ngModel)]="job.startDateTime"
                 />
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="vehicleManagerApp.job.modifiedDateTime" for="field_modifiedDateTime">Modified Date Time</label>
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.job.endDateTime" for="field_endDateTime">End Date Time</label>
             <div class="d-flex">
-                <input id="field_modifiedDateTime" type="datetime-local" class="form-control" name="modifiedDateTime" [(ngModel)]="job.modifiedDateTime"
+                <input id="field_endDateTime" type="datetime-local" class="form-control" name="endDateTime" [(ngModel)]="job.endDateTime"
                 />
             </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="vehicleManagerApp.job.deleted" for="field_deleted">Deleted</label>
-            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
-                [(ngModel)]="job.deleted" />
         </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="vehicleManagerApp.job.vehicle" for="field_vehicle">Vehicle</label>
             <select class="form-control" id="field_vehicle" name="vehicle" [(ngModel)]="job.vehicleId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="vehicleOption.id" *ngFor="let vehicleOption of vehicles; trackBy: trackVehicleById">{{vehicleOption.name}}</option>
+                <option [ngValue]="vehicleOption.id" *ngFor="let vehicleOption of vehicles; trackBy: trackVehicleById">{{vehicleOption.name}} (Place : {{vehicleOption.numberOfPlace}} Max)</option>
             </select>
         </div>
     </div>

@@ -29,6 +29,16 @@ public class Job implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @NotNull
+    @Column(name = "drivers", nullable = false)
+    private Integer drivers;
+
+    @Column(name = "start_date_time")
+    private ZonedDateTime startDateTime;
+
+    @Column(name = "end_date_time")
+    private ZonedDateTime endDateTime;
+
     @Column(name = "created_date_time")
     private ZonedDateTime createdDateTime;
 
@@ -74,6 +84,45 @@ public class Job implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getDrivers() {
+        return drivers;
+    }
+
+    public Job drivers(Integer drivers) {
+        this.drivers = drivers;
+        return this;
+    }
+
+    public void setDrivers(Integer drivers) {
+        this.drivers = drivers;
+    }
+
+    public ZonedDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    public Job startDateTime(ZonedDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+        return this;
+    }
+
+    public void setStartDateTime(ZonedDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public ZonedDateTime getEndDateTime() {
+        return endDateTime;
+    }
+
+    public Job endDateTime(ZonedDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+        return this;
+    }
+
+    public void setEndDateTime(ZonedDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
     public ZonedDateTime getCreatedDateTime() {
@@ -155,6 +204,9 @@ public class Job implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
+            ", drivers=" + getDrivers() +
+            ", startDateTime='" + getStartDateTime() + "'" +
+            ", endDateTime='" + getEndDateTime() + "'" +
             ", createdDateTime='" + getCreatedDateTime() + "'" +
             ", modifiedDateTime='" + getModifiedDateTime() + "'" +
             ", deleted='" + isDeleted() + "'" +

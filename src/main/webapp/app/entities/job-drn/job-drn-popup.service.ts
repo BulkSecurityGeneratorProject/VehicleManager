@@ -31,6 +31,10 @@ export class JobDrnPopupService {
                 this.jobService.find(id)
                     .subscribe((jobResponse: HttpResponse<JobDrn>) => {
                         const job: JobDrn = jobResponse.body;
+                        job.startDateTime = this.datePipe
+                            .transform(job.startDateTime, 'yyyy-MM-ddTHH:mm:ss');
+                        job.endDateTime = this.datePipe
+                            .transform(job.endDateTime, 'yyyy-MM-ddTHH:mm:ss');
                         job.createdDateTime = this.datePipe
                             .transform(job.createdDateTime, 'yyyy-MM-ddTHH:mm:ss');
                         job.modifiedDateTime = this.datePipe

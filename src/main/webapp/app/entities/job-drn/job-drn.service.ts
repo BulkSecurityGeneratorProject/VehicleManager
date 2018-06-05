@@ -63,6 +63,10 @@ export class JobDrnService {
      */
     private convertItemFromServer(job: JobDrn): JobDrn {
         const copy: JobDrn = Object.assign({}, job);
+        copy.startDateTime = this.dateUtils
+            .convertDateTimeFromServer(job.startDateTime);
+        copy.endDateTime = this.dateUtils
+            .convertDateTimeFromServer(job.endDateTime);
         copy.createdDateTime = this.dateUtils
             .convertDateTimeFromServer(job.createdDateTime);
         copy.modifiedDateTime = this.dateUtils
@@ -75,6 +79,10 @@ export class JobDrnService {
      */
     private convert(job: JobDrn): JobDrn {
         const copy: JobDrn = Object.assign({}, job);
+
+        copy.startDateTime = this.dateUtils.toDate(job.startDateTime);
+
+        copy.endDateTime = this.dateUtils.toDate(job.endDateTime);
 
         copy.createdDateTime = this.dateUtils.toDate(job.createdDateTime);
 

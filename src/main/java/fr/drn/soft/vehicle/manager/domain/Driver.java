@@ -47,9 +47,6 @@ public class Driver implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "hire_date")
-    private ZonedDateTime hireDate;
-
     @Column(name = "created_date_time")
     private ZonedDateTime createdDateTime;
 
@@ -135,19 +132,6 @@ public class Driver implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public ZonedDateTime getHireDate() {
-        return hireDate;
-    }
-
-    public Driver hireDate(ZonedDateTime hireDate) {
-        this.hireDate = hireDate;
-        return this;
-    }
-
-    public void setHireDate(ZonedDateTime hireDate) {
-        this.hireDate = hireDate;
     }
 
     public ZonedDateTime getCreatedDateTime() {
@@ -244,7 +228,6 @@ public class Driver implements Serializable {
             ", email='" + getEmail() + "'" +
             ", businessIdentification='" + getBusinessIdentification() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
-            ", hireDate='" + getHireDate() + "'" +
             ", createdDateTime='" + getCreatedDateTime() + "'" +
             ", modifiedDateTime='" + getModifiedDateTime() + "'" +
             ", deleted='" + isDeleted() + "'" +

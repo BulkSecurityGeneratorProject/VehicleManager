@@ -52,6 +52,15 @@ public class JobResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_DRIVERS = 1;
+    private static final Integer UPDATED_DRIVERS = 2;
+
+    private static final ZonedDateTime DEFAULT_START_DATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_START_DATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final ZonedDateTime DEFAULT_END_DATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_END_DATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
     private static final ZonedDateTime DEFAULT_CREATED_DATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATED_DATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -107,6 +116,9 @@ public class JobResourceIntTest {
         Job job = new Job()
             .name(DEFAULT_NAME)
             .description(DEFAULT_DESCRIPTION)
+            .drivers(DEFAULT_DRIVERS)
+            .startDateTime(DEFAULT_START_DATE_TIME)
+            .endDateTime(DEFAULT_END_DATE_TIME)
             .createdDateTime(DEFAULT_CREATED_DATE_TIME)
             .modifiedDateTime(DEFAULT_MODIFIED_DATE_TIME)
             .deleted(DEFAULT_DELETED);
@@ -136,6 +148,9 @@ public class JobResourceIntTest {
         Job testJob = jobList.get(jobList.size() - 1);
         assertThat(testJob.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testJob.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testJob.getDrivers()).isEqualTo(DEFAULT_DRIVERS);
+        assertThat(testJob.getStartDateTime()).isEqualTo(DEFAULT_START_DATE_TIME);
+        assertThat(testJob.getEndDateTime()).isEqualTo(DEFAULT_END_DATE_TIME);
         assertThat(testJob.getCreatedDateTime()).isEqualTo(DEFAULT_CREATED_DATE_TIME);
         assertThat(testJob.getModifiedDateTime()).isEqualTo(DEFAULT_MODIFIED_DATE_TIME);
         assertThat(testJob.isDeleted()).isEqualTo(DEFAULT_DELETED);
@@ -182,6 +197,25 @@ public class JobResourceIntTest {
 
     @Test
     @Transactional
+    public void checkDriversIsRequired() throws Exception {
+        int databaseSizeBeforeTest = jobRepository.findAll().size();
+        // set the field null
+        job.setDrivers(null);
+
+        // Create the Job, which fails.
+        JobDTO jobDTO = jobMapper.toDto(job);
+
+        restJobMockMvc.perform(post("/api/jobs")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(jobDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Job> jobList = jobRepository.findAll();
+        assertThat(jobList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllJobs() throws Exception {
         // Initialize the database
         jobRepository.saveAndFlush(job);
@@ -193,6 +227,9 @@ public class JobResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(job.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].drivers").value(hasItem(DEFAULT_DRIVERS)))
+            .andExpect(jsonPath("$.[*].startDateTime").value(hasItem(sameInstant(DEFAULT_START_DATE_TIME))))
+            .andExpect(jsonPath("$.[*].endDateTime").value(hasItem(sameInstant(DEFAULT_END_DATE_TIME))))
             .andExpect(jsonPath("$.[*].createdDateTime").value(hasItem(sameInstant(DEFAULT_CREATED_DATE_TIME))))
             .andExpect(jsonPath("$.[*].modifiedDateTime").value(hasItem(sameInstant(DEFAULT_MODIFIED_DATE_TIME))))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
@@ -211,6 +248,9 @@ public class JobResourceIntTest {
             .andExpect(jsonPath("$.id").value(job.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.drivers").value(DEFAULT_DRIVERS))
+            .andExpect(jsonPath("$.startDateTime").value(sameInstant(DEFAULT_START_DATE_TIME)))
+            .andExpect(jsonPath("$.endDateTime").value(sameInstant(DEFAULT_END_DATE_TIME)))
             .andExpect(jsonPath("$.createdDateTime").value(sameInstant(DEFAULT_CREATED_DATE_TIME)))
             .andExpect(jsonPath("$.modifiedDateTime").value(sameInstant(DEFAULT_MODIFIED_DATE_TIME)))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
@@ -238,6 +278,9 @@ public class JobResourceIntTest {
         updatedJob
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
+            .drivers(UPDATED_DRIVERS)
+            .startDateTime(UPDATED_START_DATE_TIME)
+            .endDateTime(UPDATED_END_DATE_TIME)
             .createdDateTime(UPDATED_CREATED_DATE_TIME)
             .modifiedDateTime(UPDATED_MODIFIED_DATE_TIME)
             .deleted(UPDATED_DELETED);
@@ -254,6 +297,9 @@ public class JobResourceIntTest {
         Job testJob = jobList.get(jobList.size() - 1);
         assertThat(testJob.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testJob.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testJob.getDrivers()).isEqualTo(UPDATED_DRIVERS);
+        assertThat(testJob.getStartDateTime()).isEqualTo(UPDATED_START_DATE_TIME);
+        assertThat(testJob.getEndDateTime()).isEqualTo(UPDATED_END_DATE_TIME);
         assertThat(testJob.getCreatedDateTime()).isEqualTo(UPDATED_CREATED_DATE_TIME);
         assertThat(testJob.getModifiedDateTime()).isEqualTo(UPDATED_MODIFIED_DATE_TIME);
         assertThat(testJob.isDeleted()).isEqualTo(UPDATED_DELETED);

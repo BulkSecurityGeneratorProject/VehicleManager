@@ -31,8 +31,6 @@ export class DriverDrnPopupService {
                 this.driverService.find(id)
                     .subscribe((driverResponse: HttpResponse<DriverDrn>) => {
                         const driver: DriverDrn = driverResponse.body;
-                        driver.hireDate = this.datePipe
-                            .transform(driver.hireDate, 'yyyy-MM-ddTHH:mm:ss');
                         driver.createdDateTime = this.datePipe
                             .transform(driver.createdDateTime, 'yyyy-MM-ddTHH:mm:ss');
                         driver.modifiedDateTime = this.datePipe

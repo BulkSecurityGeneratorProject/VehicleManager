@@ -10,8 +10,11 @@ entity Vehicle {
 entity Job {
 	name String required maxlength(100),
   	description String,
+  	drivers Integer required,
+  	startDateTime ZonedDateTime,
+  	endDateTime ZonedDateTime,
   	createdDateTime ZonedDateTime,
-  	modifiedDateTime ZonedDateTime
+  	modifiedDateTime ZonedDateTime,
   	deleted Boolean
 }
 
@@ -27,7 +30,6 @@ entity Driver {
 	email String required maxlength(100),
     businessIdentification String required maxlength(255),
 	phoneNumber String,
-	hireDate ZonedDateTime,
     createdDateTime ZonedDateTime,
   	modifiedDateTime ZonedDateTime,
 	deleted Boolean
@@ -44,7 +46,7 @@ entity Cost {
 }
 
 relationship OneToOne {
-	Cost{vehicle} to Vehicle 
+	Cost{vehicle} to Vehicle
 }
 
 relationship ManyToOne {

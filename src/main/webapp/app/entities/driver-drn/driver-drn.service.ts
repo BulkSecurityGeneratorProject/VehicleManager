@@ -63,8 +63,6 @@ export class DriverDrnService {
      */
     private convertItemFromServer(driver: DriverDrn): DriverDrn {
         const copy: DriverDrn = Object.assign({}, driver);
-        copy.hireDate = this.dateUtils
-            .convertDateTimeFromServer(driver.hireDate);
         copy.createdDateTime = this.dateUtils
             .convertDateTimeFromServer(driver.createdDateTime);
         copy.modifiedDateTime = this.dateUtils
@@ -77,8 +75,6 @@ export class DriverDrnService {
      */
     private convert(driver: DriverDrn): DriverDrn {
         const copy: DriverDrn = Object.assign({}, driver);
-
-        copy.hireDate = this.dateUtils.toDate(driver.hireDate);
 
         copy.createdDateTime = this.dateUtils.toDate(driver.createdDateTime);
 

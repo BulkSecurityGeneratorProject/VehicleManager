@@ -50,10 +50,6 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "hireDate",
-            "fieldType": "ZonedDateTime"
-        },
-        {
             "fieldName": "createdDateTime",
             "fieldType": "ZonedDateTime"
         },

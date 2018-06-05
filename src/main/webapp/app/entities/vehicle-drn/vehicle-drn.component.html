@@ -16,25 +16,17 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="vehicleManagerApp.vehicle.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="numberPlate"><span jhiTranslate="vehicleManagerApp.vehicle.numberPlate">Number Plate</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="numberOfPlace"><span jhiTranslate="vehicleManagerApp.vehicle.numberOfPlace">Number Of Place</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="createdDateTime"><span jhiTranslate="vehicleManagerApp.vehicle.createdDateTime">Created Date Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="modifiedDateTime"><span jhiTranslate="vehicleManagerApp.vehicle.modifiedDateTime">Modified Date Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="deleted"><span jhiTranslate="vehicleManagerApp.vehicle.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let vehicle of vehicles ;trackBy: trackId">
-                <td><a [routerLink]="['../vehicle-drn', vehicle.id ]">{{vehicle.id}}</a></td>
                 <td>{{vehicle.name}}</td>
                 <td>{{vehicle.numberPlate}}</td>
                 <td>{{vehicle.numberOfPlace}}</td>
-                <td>{{vehicle.createdDateTime | date:'medium'}}</td>
-                <td>{{vehicle.modifiedDateTime | date:'medium'}}</td>
-                <td>{{vehicle.deleted}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

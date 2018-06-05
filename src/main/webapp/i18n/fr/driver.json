@@ -21,7 +21,6 @@
             "email": "Email",
             "businessIdentification": "Business Identification",
             "phoneNumber": "Phone Number",
-            "hireDate": "Hire Date",
             "createdDateTime": "Created Date Time",
             "modifiedDateTime": "Modified Date Time",
             "deleted": "Deleted",

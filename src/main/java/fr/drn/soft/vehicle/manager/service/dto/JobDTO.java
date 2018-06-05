@@ -21,6 +21,13 @@ public class JobDTO implements Serializable {
 
     private String description;
 
+    @NotNull
+    private Integer drivers;
+
+    private ZonedDateTime startDateTime;
+
+    private ZonedDateTime endDateTime;
+
     private ZonedDateTime createdDateTime;
 
     private ZonedDateTime modifiedDateTime;
@@ -53,6 +60,30 @@ public class JobDTO implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(Integer drivers) {
+        this.drivers = drivers;
+    }
+
+    public ZonedDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    public void setStartDateTime(ZonedDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public ZonedDateTime getEndDateTime() {
+        return endDateTime;
+    }
+
+    public void setEndDateTime(ZonedDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
     public ZonedDateTime getCreatedDateTime() {
@@ -122,6 +153,9 @@ public class JobDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
+            ", drivers=" + getDrivers() +
+            ", startDateTime='" + getStartDateTime() + "'" +
+            ", endDateTime='" + getEndDateTime() + "'" +
             ", createdDateTime='" + getCreatedDateTime() + "'" +
             ", modifiedDateTime='" + getModifiedDateTime() + "'" +
             ", deleted='" + isDeleted() + "'" +

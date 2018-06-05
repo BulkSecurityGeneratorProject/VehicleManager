@@ -4,18 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="vehicleManagerApp.jobWorker.createdDateTime">Created Date Time</span></dt>
-        <dd>
-            <span>{{jobWorker.createdDateTime | date:'medium'}}</span>
-        </dd>
-        <dt><span jhiTranslate="vehicleManagerApp.jobWorker.modifiedDateTime">Modified Date Time</span></dt>
-        <dd>
-            <span>{{jobWorker.modifiedDateTime | date:'medium'}}</span>
-        </dd>
-        <dt><span jhiTranslate="vehicleManagerApp.jobWorker.deleted">Deleted</span></dt>
-        <dd>
-            <span>{{jobWorker.deleted}}</span>
-        </dd>
         <dt><span jhiTranslate="vehicleManagerApp.jobWorker.work">Work</span></dt>
         <dd>
             <div *ngIf="jobWorker.workId">
