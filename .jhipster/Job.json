@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "vehicle",
+            "otherEntityName": "vehicle",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "modifiedDateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180605172822",
+    "entityTableName": "job",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "drn"
+}

@@ -1,0 +1,58 @@
+
+<div *ngIf="driver">
+    <h2><span jhiTranslate="vehicleManagerApp.driver.detail.title">Driver</span> {{driver.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vehicleManagerApp.driver.firstName">First Name</span></dt>
+        <dd>
+            <span>{{driver.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="vehicleManagerApp.driver.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{driver.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="vehicleManagerApp.driver.email">Email</span></dt>
+        <dd>
+            <span>{{driver.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="vehicleManagerApp.driver.businessIdentification">Business Identification</span></dt>
+        <dd>
+            <span>{{driver.businessIdentification}}</span>
+        </dd>
+        <dt><span jhiTranslate="vehicleManagerApp.driver.phoneNumber">Phone Number</span></dt>
+        <dd>
+            <span>{{driver.phoneNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="vehicleManagerApp.driver.hireDate">Hire Date</span></dt>
+        <dd>
+            <span>{{driver.hireDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="vehicleManagerApp.driver.createdDateTime">Created Date Time</span></dt>
+        <dd>
+            <span>{{driver.createdDateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="vehicleManagerApp.driver.modifiedDateTime">Modified Date Time</span></dt>
+        <dd>
+            <span>{{driver.modifiedDateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="vehicleManagerApp.driver.deleted">Deleted</span></dt>
+        <dd>
+            <span>{{driver.deleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'driver-drn/'+ driver.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

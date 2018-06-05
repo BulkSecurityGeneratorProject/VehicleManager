@@ -1,0 +1,31 @@
+
+{
+    "vehicleManagerApp": {
+        "driver" : {
+            "home": {
+                "title": "Drivers",
+                "createLabel": "Create a new Driver",
+                "createOrEditLabel": "Create or edit a Driver"
+            },
+            "created": "A new Driver is created with identifier {{ param }}",
+            "updated": "A Driver is updated with identifier {{ param }}",
+            "deleted": "A Driver is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Driver {{ id }}?"
+            },
+            "detail": {
+                "title": "Driver"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "businessIdentification": "Business Identification",
+            "phoneNumber": "Phone Number",
+            "hireDate": "Hire Date",
+            "createdDateTime": "Created Date Time",
+            "modifiedDateTime": "Modified Date Time",
+            "deleted": "Deleted",
+            "job": "Job"
+        }
+    }
+}

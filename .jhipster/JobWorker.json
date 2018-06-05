@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "work",
+            "otherEntityName": "job",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "driver",
+            "otherEntityName": "driver",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "createdDateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "modifiedDateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180605172823",
+    "entityTableName": "job_worker",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "drn"
+}

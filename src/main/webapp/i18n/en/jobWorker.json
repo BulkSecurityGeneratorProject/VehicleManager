@@ -1,0 +1,26 @@
+
+{
+    "vehicleManagerApp": {
+        "jobWorker" : {
+            "home": {
+                "title": "Job Workers",
+                "createLabel": "Create a new Job Worker",
+                "createOrEditLabel": "Create or edit a Job Worker"
+            },
+            "created": "A new Job Worker is created with identifier {{ param }}",
+            "updated": "A Job Worker is updated with identifier {{ param }}",
+            "deleted": "A Job Worker is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Job Worker {{ id }}?"
+            },
+            "detail": {
+                "title": "Job Worker"
+            },
+            "createdDateTime": "Created Date Time",
+            "modifiedDateTime": "Modified Date Time",
+            "deleted": "Deleted",
+            "work": "Work",
+            "driver": "Driver"
+        }
+    }
+}

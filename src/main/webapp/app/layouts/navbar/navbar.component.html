@@ -29,6 +29,36 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="vehicle-drn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.vehicleDrn">Vehicle Drn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="job-drn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.jobDrn">Job Drn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="job-worker-drn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.jobWorkerDrn">Job Worker Drn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="driver-drn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.driverDrn">Driver Drn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="cost-drn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.costDrn">Cost Drn</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

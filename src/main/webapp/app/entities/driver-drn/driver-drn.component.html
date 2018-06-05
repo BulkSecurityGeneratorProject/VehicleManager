@@ -1,0 +1,82 @@
+<div>
+    <h2>
+        <span jhiTranslate="vehicleManagerApp.driver.home.title">Drivers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-driver-drn" [routerLink]="['/', { outlets: { popup: ['driver-drn-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="vehicleManagerApp.driver.home.createLabel">
+            Create new Driver
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="drivers">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="vehicleManagerApp.driver.firstName">First Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="vehicleManagerApp.driver.lastName">Last Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="email"><span jhiTranslate="vehicleManagerApp.driver.email">Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="businessIdentification"><span jhiTranslate="vehicleManagerApp.driver.businessIdentification">Business Identification</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phoneNumber"><span jhiTranslate="vehicleManagerApp.driver.phoneNumber">Phone Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hireDate"><span jhiTranslate="vehicleManagerApp.driver.hireDate">Hire Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdDateTime"><span jhiTranslate="vehicleManagerApp.driver.createdDateTime">Created Date Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="modifiedDateTime"><span jhiTranslate="vehicleManagerApp.driver.modifiedDateTime">Modified Date Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="vehicleManagerApp.driver.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let driver of drivers ;trackBy: trackId">
+                <td><a [routerLink]="['../driver-drn', driver.id ]">{{driver.id}}</a></td>
+                <td>{{driver.firstName}}</td>
+                <td>{{driver.lastName}}</td>
+                <td>{{driver.email}}</td>
+                <td>{{driver.businessIdentification}}</td>
+                <td>{{driver.phoneNumber}}</td>
+                <td>{{driver.hireDate | date:'medium'}}</td>
+                <td>{{driver.createdDateTime | date:'medium'}}</td>
+                <td>{{driver.modifiedDateTime | date:'medium'}}</td>
+                <td>{{driver.deleted}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../driver-drn', driver.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'driver-drn/'+ driver.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'driver-drn/'+ driver.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="drivers && drivers.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div>
+    <h2>
+        <span jhiTranslate="vehicleManagerApp.cost.home.title">Costs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-cost-drn" [routerLink]="['/', { outlets: { popup: ['cost-drn-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="vehicleManagerApp.cost.home.createLabel">
+            Create new Cost
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="costs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="vehicleManagerApp.cost.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="perDay"><span jhiTranslate="vehicleManagerApp.cost.perDay">Per Day</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="perKm"><span jhiTranslate="vehicleManagerApp.cost.perKm">Per Km</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdDateTime"><span jhiTranslate="vehicleManagerApp.cost.createdDateTime">Created Date Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="modifiedDateTime"><span jhiTranslate="vehicleManagerApp.cost.modifiedDateTime">Modified Date Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="vehicleManagerApp.cost.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vehicleId"><span jhiTranslate="vehicleManagerApp.cost.vehicle">Vehicle</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cost of costs ;trackBy: trackId">
+                <td><a [routerLink]="['../cost-drn', cost.id ]">{{cost.id}}</a></td>
+                <td>{{cost.name}}</td>
+                <td>{{cost.perDay}}</td>
+                <td>{{cost.perKm}}</td>
+                <td>{{cost.createdDateTime | date:'medium'}}</td>
+                <td>{{cost.modifiedDateTime | date:'medium'}}</td>
+                <td>{{cost.deleted}}</td>
+                <td>
+                    <div *ngIf="cost.vehicleId">
+                        <a [routerLink]="['../vehicle-drn', cost.vehicleId  ]" >{{cost.vehicleId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../cost-drn', cost.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cost-drn/'+ cost.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cost-drn/'+ cost.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="costs && costs.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

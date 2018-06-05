@@ -1,0 +1,68 @@
+entity Vehicle {
+  name String required maxlength(100),
+  numberPlate String required maxlength(50),
+  numberOfPlace Integer,
+  createdDateTime ZonedDateTime,
+  modifiedDateTime ZonedDateTime,
+  deleted Boolean
+}
+
+entity Job {
+	name String required maxlength(100),
+  	description String,
+  	createdDateTime ZonedDateTime,
+  	modifiedDateTime ZonedDateTime
+  	deleted Boolean
+}
+
+entity JobWorker {
+	createdDateTime ZonedDateTime,
+  	modifiedDateTime ZonedDateTime,
+  	deleted Boolean
+}
+
+entity Driver {
+	firstName String required maxlength(100),
+	lastName String required maxlength(100),
+	email String required maxlength(100),
+    businessIdentification String required maxlength(255),
+	phoneNumber String,
+	hireDate ZonedDateTime,
+    createdDateTime ZonedDateTime,
+  	modifiedDateTime ZonedDateTime,
+	deleted Boolean
+}
+
+entity Cost {
+ 	name String required maxlength(100),
+ 	perDay Double required,
+    perKm Double required,
+    perDay Double required,
+ 	createdDateTime ZonedDateTime,
+ 	modifiedDateTime ZonedDateTime,
+ 	deleted Boolean
+}
+
+relationship OneToOne {
+	Cost{vehicle} to Vehicle 
+}
+
+relationship ManyToOne {
+    JobWorker{work(name)} to Job
+    Job{vehicle(name)} to Vehicle
+}
+
+relationship OneToMany {
+	Driver{job} to JobWorker
+}
+
+
+
+// Set pagination options
+paginate * with pagination
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+angularSuffix * with drn

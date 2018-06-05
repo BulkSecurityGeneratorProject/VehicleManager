@@ -1,0 +1,96 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCostLabel" jhiTranslate="vehicleManagerApp.cost.home.createOrEditLabel">Create or edit a Cost</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!cost.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="cost.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="cost.name" required maxlength="100"/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.perDay" for="field_perDay">Per Day</label>
+            <input type="number" class="form-control" name="perDay" id="field_perDay"
+                [(ngModel)]="cost.perDay" required/>
+            <div [hidden]="!(editForm.controls.perDay?.dirty && editForm.controls.perDay?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.perDay?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.perDay?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.perKm" for="field_perKm">Per Km</label>
+            <input type="number" class="form-control" name="perKm" id="field_perKm"
+                [(ngModel)]="cost.perKm" required/>
+            <div [hidden]="!(editForm.controls.perKm?.dirty && editForm.controls.perKm?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.perKm?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.perKm?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.createdDateTime" for="field_createdDateTime">Created Date Time</label>
+            <div class="d-flex">
+                <input id="field_createdDateTime" type="datetime-local" class="form-control" name="createdDateTime" [(ngModel)]="cost.createdDateTime"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.modifiedDateTime" for="field_modifiedDateTime">Modified Date Time</label>
+            <div class="d-flex">
+                <input id="field_modifiedDateTime" type="datetime-local" class="form-control" name="modifiedDateTime" [(ngModel)]="cost.modifiedDateTime"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.deleted" for="field_deleted">Deleted</label>
+            <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                [(ngModel)]="cost.deleted" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.vehicle" for="field_vehicle">Vehicle</label>
+            <select class="form-control" id="field_vehicle" name="vehicle" [(ngModel)]="cost.vehicleId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="vehicleOption.id" *ngFor="let vehicleOption of vehicles; trackBy: trackVehicleById">{{vehicleOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
