@@ -23,7 +23,7 @@
             <label class="form-control-label" jhiTranslate="vehicleManagerApp.jobWorker.driver" for="field_driver">Driver</label>
             <select class="form-control" id="field_driver" name="driver" [(ngModel)]="jobWorker.driverId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="driverOption.id" *ngFor="let driverOption of drivers; trackBy: trackDriverById">{{driverOption.id}}</option>
+                <option [ngValue]="driverOption.id" *ngFor="let driverOption of drivers; trackBy: trackDriverById">{{driverOption.firstName}} {{driverOption.lastName}}</option>
             </select>
         </div>
     </div>

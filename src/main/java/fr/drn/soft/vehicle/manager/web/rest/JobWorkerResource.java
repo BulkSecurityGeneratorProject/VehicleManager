@@ -2,10 +2,10 @@ package fr.drn.soft.vehicle.manager.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import fr.drn.soft.vehicle.manager.service.JobWorkerService;
+import fr.drn.soft.vehicle.manager.service.dto.JobWorkerDTO;
 import fr.drn.soft.vehicle.manager.web.rest.errors.BadRequestAlertException;
 import fr.drn.soft.vehicle.manager.web.rest.util.HeaderUtil;
 import fr.drn.soft.vehicle.manager.web.rest.util.PaginationUtil;
-import fr.drn.soft.vehicle.manager.service.dto.JobWorkerDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -54,9 +53,13 @@ public class JobWorkerResource {
             throw new BadRequestAlertException("A new jobWorker cannot already have an ID", ENTITY_NAME, "idexists");
         }
         JobWorkerDTO result = jobWorkerService.save(jobWorkerDTO);
-        return ResponseEntity.created(new URI("/api/job-workers/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        if (result == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createEntityCreationAlert("You have reached the limit for reservations allowed ...",jobWorkerDTO.getWorkName())).build();
+        } else {
+            return ResponseEntity.created(new URI("/api/job-workers/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
+        }
     }
 
     /**

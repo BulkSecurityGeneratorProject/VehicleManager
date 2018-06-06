@@ -30,7 +30,7 @@
                 </td>
                 <td>
                     <div *ngIf="jobWorker.driverId">
-                        <a [routerLink]="['../driver-drn', jobWorker.driverId  ]" >{{jobWorker.driverId}}</a>
+                        <a [routerLink]="['../driver-drn', jobWorker.driverId  ]" >{{jobWorker.driverFirstName}} {{jobWorker.driverLastName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -1,6 +1,6 @@
 {
     "home": {
-        "title": "BackOfice vehicle Manager",
+        "title": "BackOffice Vehicle Manager",
         "subtitle": "",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."

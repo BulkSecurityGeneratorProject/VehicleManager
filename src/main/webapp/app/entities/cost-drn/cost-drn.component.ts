@@ -1,20 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import {JhiAlertService, JhiEventManager, JhiParseLinks} from 'ng-jhipster';
 
-import { CostDrn } from './cost-drn.model';
-import { CostDrnService } from './cost-drn.service';
-import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import {CostDrn} from './cost-drn.model';
+import {CostDrnService} from './cost-drn.service';
+import {ITEMS_PER_PAGE, Principal} from '../../shared';
 
 @Component({
     selector: 'jhi-cost-drn',
     templateUrl: './cost-drn.component.html'
 })
 export class CostDrnComponent implements OnInit, OnDestroy {
+    km = 1000;
+    nbDays = 1;
+    nbDriver = 1;
 
-currentAccount: any;
+    currentAccount: any;
     costs: CostDrn[];
     error: any;
     success: any;
@@ -29,15 +32,13 @@ currentAccount: any;
     previousPage: any;
     reverse: any;
 
-    constructor(
-        private costService: CostDrnService,
-        private parseLinks: JhiParseLinks,
-        private jhiAlertService: JhiAlertService,
-        private principal: Principal,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private eventManager: JhiEventManager
-    ) {
+    constructor(private costService: CostDrnService,
+                private parseLinks: JhiParseLinks,
+                private jhiAlertService: JhiAlertService,
+                private principal: Principal,
+                private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private eventManager: JhiEventManager) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data.pagingParams.page;
@@ -51,24 +52,28 @@ currentAccount: any;
         this.costService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
-                (res: HttpResponse<CostDrn[]>) => this.onSuccess(res.body, res.headers),
-                (res: HttpErrorResponse) => this.onError(res.message)
+            sort: this.sort()
+        }).subscribe(
+            (res: HttpResponse<CostDrn[]>) => this.onSuccess(res.body, res.headers),
+            (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
+
     loadPage(page: number) {
         if (page !== this.previousPage) {
             this.previousPage = page;
             this.transition();
         }
     }
+
     transition() {
-        this.router.navigate(['/cost-drn'], {queryParams:
-            {
-                page: this.page,
-                size: this.itemsPerPage,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
+        this.router.navigate(['/cost-drn'], {
+            queryParams:
+                {
+                    page: this.page,
+                    size: this.itemsPerPage,
+                    sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+                }
         });
         this.loadAll();
     }
@@ -81,6 +86,7 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -96,6 +102,7 @@ currentAccount: any;
     trackId(index: number, item: CostDrn) {
         return item.id;
     }
+
     registerChangeInCosts() {
         this.eventSubscriber = this.eventManager.subscribe('costListModification', (response) => this.loadAll());
     }
@@ -115,6 +122,7 @@ currentAccount: any;
         // this.page = pagingParams.page;
         this.costs = data;
     }
+
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }

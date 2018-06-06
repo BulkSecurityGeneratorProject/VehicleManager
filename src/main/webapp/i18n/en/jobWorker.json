@@ -1,12 +1,12 @@
-
 {
     "vehicleManagerApp": {
-        "jobWorker" : {
+        "jobWorker": {
             "home": {
                 "title": "Job Workers",
                 "createLabel": "Create a new Job Worker",
                 "createOrEditLabel": "Create or edit a Job Worker"
             },
+            "reachedTheLimitForReservations": "You have reached the limit for reservations allowed ...",
             "created": "A new Job Worker is created with identifier {{ param }}",
             "updated": "A Job Worker is updated with identifier {{ param }}",
             "deleted": "A Job Worker is deleted with identifier {{ param }}",

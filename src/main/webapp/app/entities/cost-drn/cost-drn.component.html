@@ -10,36 +10,61 @@
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
+        <div class="col-md-12">
+            <h4 jhiTranslate="vehicleManagerApp.cost.quotation">quotation</h4>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.km" for="field_km">KM</label>
+                <input type="number" class="form-control" name="km" id="field_km" min="1"
+                       [(ngModel)]="km" required maxlength="100" value="1"/>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.days" for="field_nbDays">Days</label>
+                <input type="number" class="form-control" name="nbDays" id="field_nbDays" min="1"
+                       [(ngModel)]="nbDays" required maxlength="100" value="1"/>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="vehicleManagerApp.cost.driver" for="field_nbDriver">Driver</label>
+                <input type="number" class="form-control" name="nbDays" id="field_nbDriver"
+                       [(ngModel)]="nbDriver" required maxlength="100" value="1" min="1" max="2"/>
+            </div>
+        </div>
+
     </div>
     <br/>
     <div class="table-responsive" *ngIf="costs">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="vehicleManagerApp.cost.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="perDay"><span jhiTranslate="vehicleManagerApp.cost.perDay">Per Day</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="perKm"><span jhiTranslate="vehicleManagerApp.cost.perKm">Per Km</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="createdDateTime"><span jhiTranslate="vehicleManagerApp.cost.createdDateTime">Created Date Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="modifiedDateTime"><span jhiTranslate="vehicleManagerApp.cost.modifiedDateTime">Modified Date Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="deleted"><span jhiTranslate="vehicleManagerApp.cost.deleted">Deleted</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="vehicleId"><span jhiTranslate="vehicleManagerApp.cost.vehicle">Vehicle</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vehicleName"><span jhiTranslate="vehicleManagerApp.cost.vehicle">Vehicle</span> <span class="fa fa-sort"></span></th>
+            <th><span jhiTranslate="vehicleManagerApp.cost.quotation">quotation</span></th>
+            <th></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let cost of costs ;trackBy: trackId">
-                <td><a [routerLink]="['../cost-drn', cost.id ]">{{cost.id}}</a></td>
                 <td>{{cost.name}}</td>
-                <td>{{cost.perDay}}</td>
-                <td>{{cost.perKm}}</td>
-                <td>{{cost.createdDateTime | date:'medium'}}</td>
-                <td>{{cost.modifiedDateTime | date:'medium'}}</td>
-                <td>{{cost.deleted}}</td>
+                <td>{{cost.perDay}} €</td>
+                <td>{{cost.perKm}} €</td>
                 <td>
                     <div *ngIf="cost.vehicleId">
-                        <a [routerLink]="['../vehicle-drn', cost.vehicleId  ]" >{{cost.vehicleId}}</a>
+                        <a [routerLink]="['../vehicle-drn', cost.vehicleId  ]" >{{cost.vehicleName}}</a>
                     </div>
+                </td>
+                <td>
+                    <p> <span jhiTranslate="vehicleManagerApp.cost.km">KM</span> : {{cost.perKm*km}} € <span jhiTranslate="vehicleManagerApp.cost.days">Days</span>: {{cost.perDay*nbDays}} € </p>
+                    <b> <span jhiTranslate="vehicleManagerApp.cost.total">Total</span> {{cost.perKm*km + cost.perDay*nbDays + 150*nbDriver}} € </b>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

@@ -31,7 +31,7 @@
         <dt><span jhiTranslate="vehicleManagerApp.cost.vehicle">Vehicle</span></dt>
         <dd>
             <div *ngIf="cost.vehicleId">
-                <a [routerLink]="['/vehicle-drn', cost.vehicleId]">{{cost.vehicleId}}</a>
+                <a [routerLink]="['/vehicle-drn', cost.vehicleId]">{{cost.vehicleName}}</a>
             </div>
         </dd>
     </dl>

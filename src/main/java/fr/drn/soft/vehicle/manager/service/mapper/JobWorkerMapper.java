@@ -14,6 +14,8 @@ public interface JobWorkerMapper extends EntityMapper<JobWorkerDTO, JobWorker> {
     @Mapping(source = "work.id", target = "workId")
     @Mapping(source = "work.name", target = "workName")
     @Mapping(source = "driver.id", target = "driverId")
+    @Mapping(source = "driver.firstName", target = "driverFirstName")
+    @Mapping(source = "driver.lastName", target = "driverLastName")
     JobWorkerDTO toDto(JobWorker jobWorker);
 
     @Mapping(source = "workId", target = "work")

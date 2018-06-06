@@ -12,5 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface JobWorkerRepository extends JpaRepository<JobWorker, Long> {
-
+    Long countAllByWork_Id(Long id);
 }

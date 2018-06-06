@@ -1,8 +1,10 @@
 package fr.drn.soft.vehicle.manager.service.impl;
 
-import fr.drn.soft.vehicle.manager.service.JobWorkerService;
+import fr.drn.soft.vehicle.manager.domain.Job;
 import fr.drn.soft.vehicle.manager.domain.JobWorker;
+import fr.drn.soft.vehicle.manager.repository.JobRepository;
 import fr.drn.soft.vehicle.manager.repository.JobWorkerRepository;
+import fr.drn.soft.vehicle.manager.service.JobWorkerService;
 import fr.drn.soft.vehicle.manager.service.dto.JobWorkerDTO;
 import fr.drn.soft.vehicle.manager.service.mapper.JobWorkerMapper;
 import org.slf4j.Logger;
@@ -24,9 +26,12 @@ public class JobWorkerServiceImpl implements JobWorkerService {
 
     private final JobWorkerRepository jobWorkerRepository;
 
+    private final JobRepository jobRepository;
+
     private final JobWorkerMapper jobWorkerMapper;
 
-    public JobWorkerServiceImpl(JobWorkerRepository jobWorkerRepository, JobWorkerMapper jobWorkerMapper) {
+    public JobWorkerServiceImpl(JobRepository jobRepository, JobWorkerRepository jobWorkerRepository, JobWorkerMapper jobWorkerMapper) {
+        this.jobRepository = jobRepository;
         this.jobWorkerRepository = jobWorkerRepository;
         this.jobWorkerMapper = jobWorkerMapper;
     }
@@ -41,8 +46,13 @@ public class JobWorkerServiceImpl implements JobWorkerService {
     public JobWorkerDTO save(JobWorkerDTO jobWorkerDTO) {
         log.debug("Request to save JobWorker : {}", jobWorkerDTO);
         JobWorker jobWorker = jobWorkerMapper.toEntity(jobWorkerDTO);
-        jobWorker = jobWorkerRepository.save(jobWorker);
-        return jobWorkerMapper.toDto(jobWorker);
+        Job job = this.jobRepository.findOne(jobWorker.getWork().getId());
+        Long reservedJob = jobWorkerRepository.countAllByWork_Id(jobWorker.getWork().getId());
+        if (reservedJob < job.getDrivers()) {
+            jobWorker = jobWorkerRepository.save(jobWorker);
+            return jobWorkerMapper.toDto(jobWorker);
+        }
+        return null;
     }
 
     /**

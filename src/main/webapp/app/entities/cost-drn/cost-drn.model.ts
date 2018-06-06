@@ -9,6 +9,7 @@ export class CostDrn implements BaseEntity {
         public createdDateTime?: any,
         public modifiedDateTime?: any,
         public deleted?: boolean,
+        public vehicleName?: string,
         public vehicleId?: number,
     ) {
         this.deleted = false;

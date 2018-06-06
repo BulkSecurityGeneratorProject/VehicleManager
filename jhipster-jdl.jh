@@ -46,7 +46,7 @@ entity Cost {
 }
 
 relationship OneToOne {
-	Cost{vehicle} to Vehicle
+	Cost{vehicle(name)} to Vehicle
 }
 
 relationship ManyToOne {

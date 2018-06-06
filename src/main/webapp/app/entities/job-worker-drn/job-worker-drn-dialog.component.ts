@@ -71,6 +71,8 @@ export class JobWorkerDrnDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+        this.jhiAlertService.error('vehicleManagerApp.jobWorker.reachedTheLimitForReservations', null, null);
+        this.activeModal.dismiss(true);
     }
 
     private onError(error: any) {

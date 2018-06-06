@@ -1,7 +1,14 @@
-
 {
     "vehicleManagerApp": {
-        "cost" : {
+        "cost": {
+            "quotation": "Quotation",
+            "km":"Nb KM",
+            "days":"Nb day",
+            "driver":"Nb driver",
+            "perKm":"Price per KM",
+            "perDays":"Price per day",
+            "perDriver":"Price per driver",
+            "total":"Total",
             "home": {
                 "title": "Costs",
                 "createLabel": "Create a new Cost",

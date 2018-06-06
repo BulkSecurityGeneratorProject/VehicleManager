@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface CostMapper extends EntityMapper<CostDTO, Cost> {
 
     @Mapping(source = "vehicle.id", target = "vehicleId")
+    @Mapping(source = "vehicle.name", target = "vehicleName")
     CostDTO toDto(Cost cost);
 
     @Mapping(source = "vehicleId", target = "vehicle")

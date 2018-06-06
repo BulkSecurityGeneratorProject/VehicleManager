@@ -1,6 +1,6 @@
 {
     "home": {
-        "title": "BackOfice de gestion des véhicules!",
+        "title": "BackOffice de gestion des véhicules!",
         "subtitle": "Ceci est votre page d'accueil",
         "logged": {
             "message": "Vous êtes connecté en tant que \"{{username}}\"."

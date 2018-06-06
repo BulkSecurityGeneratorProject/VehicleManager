@@ -5,7 +5,7 @@
             "relationshipType": "one-to-one",
             "relationshipName": "vehicle",
             "otherEntityName": "vehicle",
-            "otherEntityField": "id",
+            "otherEntityField": "name",
             "ownerSide": true,
             "otherEntityRelationshipName": "cost"
         }
